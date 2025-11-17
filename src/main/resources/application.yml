@@ -1,6 +1,6 @@
 spring:
   application:
-    name: task-management-app
+    name: task_management_app
 
   profiles:
     active: dev
