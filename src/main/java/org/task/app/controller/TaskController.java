@@ -1,7 +1,6 @@
 package org.task.app.controller;
 
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +11,7 @@ import org.task.app.exception.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/task/api")
 public class TaskController {
@@ -25,12 +25,10 @@ public class TaskController {
     @PostMapping("/create")
     ResponseEntity<ResponseStructure<Task>> createTask(@Valid @RequestBody Task task){
         Task task1 = taskService.createTask(task);
-
         ResponseStructure<Task> response = new ResponseStructure<>();
         response.setData(task1);
         response.setMessage("Task Created");
         response.setStatuscode(HttpStatus.CREATED.value());
-
         return  new  ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
@@ -47,12 +45,10 @@ public class TaskController {
     @GetMapping("/getall")
     ResponseEntity<ResponseStructure<List<Task>>> getAllTasks(){
         List<Task> tasks = taskService.getAll();
-
         ResponseStructure<List<Task>> response = new ResponseStructure<>();
         response.setData(tasks); // no casting needed
         response.setMessage("Tasks Found");
         response.setStatuscode(HttpStatus.OK.value());
-
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 

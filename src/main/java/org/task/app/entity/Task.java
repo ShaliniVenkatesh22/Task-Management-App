@@ -1,6 +1,4 @@
 package org.task.app.entity;
-
-
 import jakarta.persistence.*;
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotNull;
